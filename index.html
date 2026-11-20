@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="fonts/fonts.css">
 <link rel="stylesheet" href="demo.css">
 <style>
-:root{--azul:#0f1f3a;--azul2:#18294a;--oro:#c9a55c;--oro2:#e3c88f;--marfil:#f8f6f1;--linea:#e6e1d6;--gris:#6b7280;--serif:'DM Serif Display',Georgia,serif}
+:root{--azul:#0f1f3a;--azul2:#18294a;--oro:#c9a55c;--oro2:#e3c88f;--marfil:#f8f6f1;--linea:#e6e1d6;--gris:#565d6b;--serif:'DM Serif Display',Georgia,serif}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:Manrope,system-ui,sans-serif;background:var(--marfil);color:var(--azul);line-height:1.6}
@@ -284,7 +284,7 @@ const L=document.getElementById('lista');
 function pinta(){
  const l=P.filter(x=>(F.o==='todas'||x.o===F.o)&&(F.t==='todos'||x.t===F.t)&&(F.s==='todos'||x.s===F.s)&&(F.p==='todos'||(F.p==='alq'?x.o==='Alquiler':(()=>{const[a,b]=F.p.split('-').map(Number);return x.o==='Venta'&&x.p>=a&&x.p<=b})())));
  document.getElementById('res').innerHTML=`<b>${l.length}</b> propiedad${l.length===1?'':'es'} encontrada${l.length===1?'':'s'}`;
- L.innerHTML=l.length?l.map(x=>`<button class="prop" data-v="${x.v}" aria-label="Ver ${x.n}"><div class="im">${img(x.t,x.v,0)}<span class="badge ${x.o==='Alquiler'?'alq':''}">${x.o}</span><span class="cod">${x.c}</span></div><div class="tx"><div class="pr">${precio(x)}</div><h3>${x.n}</h3><div class="sec">${x.t} · ${x.s}</div><div class="sp"></div><div class="feats">${feats(x)}</div></div></button>`).join(''):'<div class="vacio">No hay propiedades con esos filtros. Prueba con otro sector o rango de precio, o escríbenos y te avisamos cuando llegue una.</div>';
+ L.innerHTML=l.length?l.map(x=>`<button class="prop" data-v="${x.v}"><div class="im">${img(x.t,x.v,0)}<span class="badge ${x.o==='Alquiler'?'alq':''}">${x.o}</span><span class="cod">${x.c}</span></div><div class="tx"><div class="pr">${precio(x)}</div><h3>${x.n}</h3><div class="sec">${x.t} · ${x.s}</div><div class="sp"></div><div class="feats">${feats(x)}</div></div></button>`).join(''):'<div class="vacio">No hay propiedades con esos filtros. Prueba con otro sector o rango de precio, o escríbenos y te avisamos cuando llegue una.</div>';
 }
 const ops=document.getElementById('ops');
 ops.onclick=e=>{const b=e.target.closest('button');if(!b)return;F.o=b.dataset.v;ops.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));pinta()};
